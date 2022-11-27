@@ -1,1 +1,10 @@
-<h1>注文詳細画面</h1>
+<h4>注文履歴詳細</h4>
+<p>購入者</p>
+<p>注文日</p>
+<p>配送先</p>
+<p>支払方法</p>
+<p>注文ステータス</p>
+  <%= form_with model: @order, url: admin_order_path, method: :patch, local: true do |f| %>
+    <%= f.select :status, Order.statuses.keys, class: "status" %>
+    <%= f.submit "更新" , class: "btn btn-outline-success" %>
+  <% end %>

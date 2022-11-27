@@ -1,1 +1,23 @@
-<h1>顧客詳細画面</h1>
+<h4><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h4>
+
+<p>会員ID</p>
+  <%= @customer.id %>
+<p>氏名</p>
+  <%= @customer.last_name %>
+  <%= @customer.first_name %>
+<p>フリガナ</p>
+  <%= @customer.last_name_kana %>
+  <%= @customer.first_name_kana %>
+<p>郵便番号</p>
+  <%= @customer.postal_code %>
+<p>住所</p>
+  <%= @customer.address %>
+<p>電話番号</p>
+  <%= @customer.telephone_number %>
+<p>メールアドレス</p>
+  <%= @customer.email %>
+<p>会員ステータス</p>
+  <%= @customer.is_deleted %><br>
+  
+<%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success" %>
+<%= link_to "注文履歴一覧を見る", admin_customers_path, class: "btn btn-primary" %>
