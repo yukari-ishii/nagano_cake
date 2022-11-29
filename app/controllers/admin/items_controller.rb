@@ -1,14 +1,13 @@
 class Admin::ItemsController < ApplicationController
-  
+
   def index
     @items = Item.all
   end
-  
+
   def new
     @item = Item.new
-    @genres = Genre.all
   end
-  
+
   def create
     @item = Item.new(item_params)
     @item.save
@@ -17,12 +16,13 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @genre = @item.genre
   end
-  
+
   def edit
     @item = Item.find(params[:id])
   end
-  
+
   def update
     @item = Item.find(params[:id])
     @item.update(item_params)
@@ -33,7 +33,7 @@ class Admin::ItemsController < ApplicationController
 
   #ストロングパラメータ
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :is_active)
+    params.require(:item).permit(:name, :introduction, :price, :is_active, :genre_id)
   end
 
 end

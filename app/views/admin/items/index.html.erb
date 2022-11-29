@@ -1,5 +1,7 @@
 <h4>商品一覧</h4>
-
+    <%= link_to new_admin_item_path do %>
+      <i class="fa-solid fa-circle-plus"></i>
+    <% end %>
 <table class="table">
   <thead>
     <th>商品ID</th>
@@ -12,7 +14,11 @@
     <% @items.each do |item| %>
     <tr>
       <td><%= item.id %></td>
-      <td><%= item.name %></td>
+      <td>
+        <%= link_to admin_item_path(item.id) do %>
+        <%= item.name %>
+        <% end %>
+      </td>
       <td><%= item.price %></td>
       <td><%= item.name %></td>
       <td><%= item.is_active %></td>

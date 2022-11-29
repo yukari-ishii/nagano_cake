@@ -8,14 +8,11 @@
   <p>商品説明</p>
     <%= f.text_area :introduction %>
   <p>ジャンル</p>
-    <%= f.select :item.genre_id, genres.all, :genre_id, :genre.name, include_blank: "--選択して下さい--" %>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %>
   <p>税抜価格</p>
     <%= f.text_field :price %>円
   <p>販売ステータス</p>
-    <%= form_with(model: @item, local: true) do |form| %>
-      <%= form.radio_button :is_active, :true %> 販売中
-      <%= form.radio_button :is_active, :false %> 販売停止中
-    <% end %>
-
-    <%= f.submit '新規登録', class: 'btn btn-success' %>
+    <%= f.radio_button :is_active, :true %> 販売中
+    <%= f.radio_button :is_active, :false %> 販売停止中<br>
+  <%= f.submit '新規登録', class: 'btn btn-success' %>
 <% end %>
