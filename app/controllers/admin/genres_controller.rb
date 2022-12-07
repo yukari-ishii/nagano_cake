@@ -23,6 +23,11 @@ class Admin::GenresController < ApplicationController
     redirect_to admin_genres_path
   end
 
+  def show
+    @genres = Genre.all #ジャンル検索機能
+    @genre = Genre.find(params[:id])
+  end
+
   private
 
   #ストロングパラメータ

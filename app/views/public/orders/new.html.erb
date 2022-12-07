@@ -13,7 +13,7 @@
   <%= current_customer.address %>
   
   <p><%= f.radio_button :select_address, 1 %>登録済住所から選択</p>
-  <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+  <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
 
   <p><%= f.radio_button :payment_method, 2 %>新しいお届け先</p>
   <table>

@@ -11,7 +11,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       #税抜き価格カラム
       t.integer :price, null: false
       #販売ステータスカラム
-      t.boolean :is_active, null: false, default: "t"
+      t.boolean :is_active, null: false, default: "true"
       
       t.timestamps
     end

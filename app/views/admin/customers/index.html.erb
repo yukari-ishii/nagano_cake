@@ -1,5 +1,12 @@
-<h4>会員一覧</h4>
-
+<div class="container">
+  <!--見出し-->
+  <div class="row">
+    <div class="col-lg-3 bg-light m-5">
+      <h5>会員一覧</h5>
+    </div>
+  <div class="col-lg-9"></div>
+  </div>
+  <!--一覧-->
 <table class="table">
   <thead>
     <th>会員ID</th>
@@ -15,7 +22,14 @@
           <%= customer.last_name + customer.first_name %></td>
           <% end %>
       <td><%= customer.email %></td>
-      <td><%= customer.is_deleted %></td>
+      <td>
+        <!--is_deletedがtrueなら退会、flseなら有効と表示-->
+        <% if customer.is_deleted %>
+          <span class="text-secondary font-weight-bold">退会</span>
+        <% else %>
+          <span class="text-success font-weight-bold">有効</span>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </tbody>

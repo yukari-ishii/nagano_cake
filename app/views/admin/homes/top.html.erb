@@ -1,5 +1,12 @@
-<h4>注文履歴一覧</h4>
-
+<div class="container">
+  <!--見出し-->
+  <div class="row">
+    <div class="col-lg-3 bg-light m-5">
+      <h5>注文履歴一覧</h5>
+    </div>
+  <div class="col-lg-9"></div>
+  </div>
+  <!--一覧-->
 <table class="table">
   <thead>
     <th>購入日時</th>
@@ -8,14 +15,14 @@
     <th>注文ステータス</th>
   </thead>
   <tbody>
-    <% @oders.each do |oder| %>
+    <% @orders.each do |order| %>
     <tr>
-      <td><%= link_to oder_path(oder.id) do %>
-          <%= oder.created_at %></td>
+      <td><%= link_to admin_order_path(order.id) do %>
+          <%= order.created_at %></td>
           <% end %>
-      <td><%= oder.status %></td>
-      <td><%= oder.status %></td>
-      <td><%= oder.status %></td>
+      <td><%= order.name %></td>
+      <td><%= order.status %></td>
+      <td><%= order.status %></td>
     </tr>
     <% end %>
   </tbody>

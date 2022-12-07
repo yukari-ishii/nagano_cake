@@ -23,17 +23,23 @@
         </tbody>
       </table>
     </div>
+    <!--ジャンル一覧-->
     <div class="col-lg-9 p-5">
-      <h4>商品一覧</h4>
-        <% @items.each do |item| %>
-　        <p>商品名</p>
-　        <%= link_to item_path(item.id) do %>
-          <%= item.name %>
-          <% end %>
-          <p>￥<%= item.price %></p>
-      　<% end %>
+      <h4><%= @genre.name %>一覧</h4>
+        <table>
+          <tbody>
+            <tr class="item-box">
+              <% @genre.items.each do |item| %>
+                <td class="item">
+                  <%= link_to item_path(item) do %>
+                    <%= item.name %><br>
+                    ￥<%= item.price %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>
-
-

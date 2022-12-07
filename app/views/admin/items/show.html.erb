@@ -1,18 +1,60 @@
-<h4>商品詳細</h4>
-<div class="item_image"></div>
-
-<div class="item_content">
-  <p>商品名</p>
-  <%= @item.name %>
-  <p>商品説明</p>
-  <%= @item.introduction %>
-  <p>ジャンル</p>
-  <%= @genre.name %>
-  <p>税込価格<br>
-     （税抜価格）</p>
-  <%= @item.price %>
-  <p>販売ステータス</p>
-  
+<div class="container">
+  <!--見出し-->
+  <div class="row">
+    <div class="col-lg-3 bg-light m-5">
+      <h5>商品詳細</h5>
+    </div>
+  <div class="col-lg-9"></div>
+  </div>
+  <!--商品投稿内容-->
+  <div class="row">
+    <div class="col-lg-4">
+      <!--画像が投稿されれば表示、なければno_imageを表示-->
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, size: "300×200" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "200×200" %>
+      <% end %>
+    </div>
+    <div class="col-lg-8">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td style="width: 30%">商品名</td>
+            <td><%= @item.name %></td>
+          </tr>
+          <tr>
+            <td>商品説明</td>
+            <td><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <td>ジャンル</td>
+            <td><%= @genre.name %></td>
+          </tr>
+          <tr>
+            <td>税込価格<br>（税抜価格）</td>
+            <td><%= @item.with_tax_price.to_s(:delimited) %>(<%= @item.price.to_s(:delimited) %>)円</td>
+          </tr>
+          <tr>
+            <td>販売ステータス</td>
+            <td>
+            <!--is_activがtrueなら販売中、flseなら販売停止中と表示-->
+              <% if @item.is_active %>
+                <span class="text-success font-weight-bold">販売中</span>
+              <% else %>
+                <span class="text-secondary font-weight-bold">販売停止中</span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-success" %>
+    </div>
+  </div>
 </div>
 
-<%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-success" %>
+

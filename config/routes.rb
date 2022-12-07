@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "homes#top"
     resources :items
-    resources :genres, only: [:index, :create, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update, :show]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
@@ -25,20 +25,23 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get "about" => "homes#about"
     resources :items, only: [:index, :show]
+
     #customersコントローラ
     get "customers/my_page" => "customers#show"
     get "customers/information/edit" => "customers#edit"
     patch "customers/infoemation" => "customers#update"
-    get "customers/unsubscribe" => "customers#unsubscribe"
-    patch "customers/withdraw" => "customers#withdraw"
+    get "customers/unsubscribe" => "customers#unsubscribe" #退会確認画面
+    patch "customers/withdraw" => "customers#withdraw" #論理削除用
+
     #cart_itemsコントローラ
-    resources :cart_items, only: [:index, :update, :create, :destroy]
     delete "cart_items/destroy_all" => "cart_items#destroy_all"
+    resources :cart_items, only: [:index, :update, :create, :destroy]
+
     #ordersコントローラ
     get "orders/complete" => "orders#complete"
-    resources :orders, only: [:new, :create, :index, :show]
+    resources :orders, only: [:new, :create, :index, :show, :destroy] ##destroyはtest削除のためなので後で消す！！！
     post "orders/confirm" => "orders#confirm"
-    
+
     #addressesコントローラ
     resources :addresses, except: [:new, :show]
   end

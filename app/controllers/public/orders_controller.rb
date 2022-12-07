@@ -1,5 +1,14 @@
 class Public::OrdersController < ApplicationController
-
+  
+  def index
+    @orders = current_customer.orders
+  end
+  
+  def show
+    @order = Order.find(params[:id])
+    @orders = current_customer.orders
+  end
+  
   def new
     @order = Order.new
     @addresses = Address.all
@@ -46,11 +55,12 @@ class Public::OrdersController < ApplicationController
     CartItem.destroy_all #カート内の商品をすべて削除
     redirect_to orders_complete_path
   end
-
-  def index
-  end
-
-  def show
+  
+  ##注文testを削除するためのコントローラ、後で消す機能
+  def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+    redirect_to orders_path
   end
 
   private

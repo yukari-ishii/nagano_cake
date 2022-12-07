@@ -1,28 +1,45 @@
-<h4>商品一覧</h4>
-    <%= link_to new_admin_item_path do %>
-      <i class="fa-solid fa-circle-plus"></i>
-    <% end %>
-<table class="table">
-  <thead>
-    <th>商品ID</th>
-    <th>商品名</th>
-    <th>税抜価格</th>
-    <th>ジャンル</th>
-    <th>ステータス</th>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-    <tr>
-      <td><%= item.id %></td>
-      <td>
-        <%= link_to admin_item_path(item.id) do %>
-        <%= item.name %>
-        <% end %>
-      </td>
-      <td><%= item.price %></td>
-      <td><%= item.name %></td>
-      <td><%= item.is_active %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <!--見出し-->
+  <div class="row">
+    <div class="col-lg-3 bg-light m-5">
+      <h5>商品一覧</h5>
+    </div>
+    <div class="col-lg-9 text-right">
+      <%= link_to new_admin_item_path do %>
+        <i class="fa-solid fa-circle-plus"></i>
+      <% end %>
+    </div>
+  </div>
+  <!--一覧-->
+  <table class="table">
+    <thead>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td>
+          <%= link_to admin_item_path(item.id) do %>
+          <%= item.name %>
+          <% end %>
+        </td>
+        <td><%= item.price.to_s(:delimited) %></td>
+        <td><%= item.genre.name %></td>
+        <td>
+        <!--is_activがtrueなら販売中、flseなら販売停止中と表示-->
+          <% if item.is_active %>
+            <span class="text-success font-weight-bold">販売中</span>
+          <% else %>
+            <span class="text-secondary font-weight-bold">販売停止中</span>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

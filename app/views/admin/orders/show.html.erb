@@ -1,8 +1,21 @@
-<h4>注文履歴詳細</h4>
+<div class="container">
+  <!--見出し-->
+  <div class="row">
+    <div class="col-lg-3 bg-light m-5">
+      <h5>注文履歴詳細</h5>
+    </div>
+  <div class="col-lg-9"></div>
+  </div>
+  <!--一覧-->
+
 <p>購入者</p>
+  <%= @order.name %>
 <p>注文日</p>
+  <%= @order.created_at %>
 <p>配送先</p>
+  <%= @order.address %>
 <p>支払方法</p>
+  <%= @order.payment_method %>
 <p>注文ステータス</p>
   <%= form_with model: @order, url: admin_order_path, method: :patch, local: true do |f| %>
     <%= f.select :status, Order.statuses.keys, class: "status" %>

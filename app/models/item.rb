@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   has_many :order_details, dependent: :destroy
   belongs_to :genre
   
-  #消費税を求めるメソッド
+  #単価（税込）を求めるメソッド
   def with_tax_price
     (price * 1.1).floor
   end
