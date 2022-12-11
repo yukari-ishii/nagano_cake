@@ -1,60 +1,93 @@
-<h3>新規会員登録</h3>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="container">
+  <!--見出し-->
+  <div class="row">
+    <div class="col-lg-4 bg-light m-5">
+      <h5>新規会員登録</h5>
+    </div>
+  <div class="col-lg-8"></div>
+  </div>
+  <!--新規登録欄-->
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-  <%= f.label :（姓） %>
-  <%= f.text_field :last_name %>
-  <%= f.label :（名） %>
-  <%= f.text_field :first_name %>
-　</div>
-
-  <div class="field">
-  <%= f.label :（セイ） %>
-  <%= f.text_field :last_name_kana %>
-  <%= f.label :（メイ） %>
-  <%= f.text_field :first_name_kana %>
-　</div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email, autocomplete: "email" %>
+  <div class="form-group row">
+    <div class="col-lg-1"></div>
+    <label class="col-lg-3">名前</label>
+    <div class="col-lg-8">
+      <%= f.label :（姓） %>
+      <%= f.text_field :last_name %>
+      <%= f.label :（名） %>
+      <%= f.text_field :first_name %>
+    </div>
   </div>
-
-  <div class="field">
-  <%= f.label :郵便番号（ハイフンなし） %>
-  <%= f.text_field :postal_code %>
-　</div>
-
-  <div class="field">
-  <%= f.label :住所 %>
-  <%= f.text_field :address %>
-　</div>
-
-　<div class="field">
-  <%= f.label :電話番号（ハイフンなし %>
-  <%= f.text_field :telephone_number %>
-　</div>
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="form-group row">
+    <div class="col-lg-1"></div>
+    <label class="col-lg-3">フリガナ</label>
+    <div class="col-lg-8">
+      <%= f.label :（セイ） %>
+      <%= f.text_field :last_name_kana %>
+      <%= f.label :（メイ） %>
+      <%= f.text_field :first_name_kana %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :パスワード（確認用） %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="form-group row">
+    <div class="col-lg-1"></div>
+    <label class="col-lg-3">メールアドレス</label>
+    <div class="col-lg-8">
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
+  <div class="form-group row">
+    <div class="col-lg-1"></div>
+    <label class="col-lg-3">郵便番号（ハイフンなし）</label>
+    <div class="col-lg-8">
+      <%= f.text_field :postal_code %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-lg-1"></div>
+    <label class="col-lg-3">住所</label>
+    <div class="col-lg-8">
+      <%= f.text_field :address %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-lg-1"></div>
+    <label class="col-lg-3">電話番号（ハイフンなし）</label>
+    <div class="col-lg-8">
+      <%= f.text_field :telephone_number %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-lg-1"></div>
+    <label class="col-lg-3">パスワード
+      <% if @minimum_password_length %>
+      <em>（<%= @minimum_password_length %> 文字以上）</em>
+      <% end %>
+    </label>
+    <div class="col-lg-8">
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-lg-1"></div>
+    <label class="col-lg-3">パスワード（確認用）</label>
+    <div class="col-lg-8">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-8">
+      <%= f.submit "新規登録", class: 'btn btn-success' %>
+    </div>
   </div>
 <% end %>
-
-
-<h4>既に登録済みの方</h4>
-<%= render "public/shared/links" %>
+<!--すでに登録済みの方-->
+  <div class="row">
+    <div class="col-lg-5 bg-light m-3">
+      <h6>既に登録済みの方</h6>
+    </div>
+    <div class="col-lg-7"></div>
+  </div>
+  <div class="p-3 ml-5"><%= link_to "こちら", new_customer_session_path %> からログインしてください。</div>
+</div>

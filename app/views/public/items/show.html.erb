@@ -23,18 +23,22 @@
         </tbody>
       </table>
     </div>
-    <!--ジャンル一覧-->
-    <div class="col-lg-9 p-5">
-      <div class="item_image"></div>
+    <!--商品詳細-->
+    <div class="col-lg-3 p-5">
+      <%= image_tag @item.get_image, size: '200x150' %>
+    </div>
+    <div class="col-lg-6 p-5">
       <div class="item_content">
-        <%= @item.name %><br>
-        <%= @item.introduction %><br>
-        <%= @item.price %>（税込）
+        <div class="font-weight-bold"><%= @item.name %></div>
+        <p class="p-2"><%= @item.introduction %></p>
+        <p class="font-weight-bold">￥<%= @item.with_tax_price.to_s(:delimited) %>（税込）</p>
         <%= form_with model: @cart_item, url: cart_items_path, method: :post, local:true do |f| %>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.hidden_field :customer_id, :value => current_customer.id %>
-        <%= f.select :amount, *[1..10], {include_blank: '個数'} %>
-        <%= f.submit 'カートに入れる' , class: 'btn btn-success btn-sm' %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
+        <div class="p-3">
+          <%= f.select :amount, *[1..10], {include_blank: '個数選択'} %>
+          <%= f.submit 'カートに入れる' , class: 'btn btn-success btn-sm' %>
+        </div>
         <% end %>
       </div>
     </div>

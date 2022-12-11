@@ -8,7 +8,7 @@
   </div>
   <!--一覧-->
 <table class="table">
-  <thead>
+  <thead class="table-active">
     <th>会員ID</th>
     <th>氏名</th>
     <th>メールアドレス</th>
@@ -34,3 +34,4 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @customers %>

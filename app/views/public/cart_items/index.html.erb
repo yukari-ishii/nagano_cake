@@ -1,34 +1,66 @@
-<h4>ショッピングカート</h4>
-<%= link_to "カートを空にする", cart_items_destroy_all_path, class: "btn btn-danger", method: :delete %>
-<table class="table table-bordered">
-  <thead class ="table-active">
-    <th>商品名</th>
-    <th>単価（税込）</th>
-    <th>数量</th>
-    <th>小計</th>
-    <th><br></th> <!--空白タグ-->
-  </thead>
-  <tbody>
-    <% @sum = 0 %>
-    <% @cart_items.each do |cart_item| %>
-      <tr>
-        <td>
-          <%= cart_item.item.name %>
-        </td>
-        <td><%= cart_item.item.with_tax_price %></td>
-        <td>
-          <%= form_with model: cart_item, url: cart_item_path(cart_item.id), local: true do |f| %>
+<div class="container">
+  <!--見出し-->
+  <div class="row">
+    <div class="col-lg-4 bg-light m-5">
+      <h5>ショッピングカート</h5>
+    </div>
+    <div class="col-lg-8"></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-9"></div>
+    <div class="col-lg-3 text-right">
+      <%= link_to "カートを空にする", cart_items_destroy_all_path, class: "btn btn-danger", method: :delete %>
+    </div>
+  </div>
+  <!--カート情報-->
+  <div class="row">
+    <table class="table table-bordered m-3">
+      <thead class ="table-active">
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th><br></th> <!--空白タグ-->
+      </thead>
+      <tbody>
+        <% @sum = 0 %>
+        <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td>
+            <%= image_tag cart_item.item.get_image, size: '75x50' %>
+            <%= cart_item.item.name %>
+          </td>
+          <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+          <td>
+            <%= form_with model: cart_item, url: cart_item_path(cart_item.id), local: true do |f| %>
             <%= f.select :amount, *[1..10] %>
             <%= f.submit "変更" , class: "btn btn-success" %>
-          <% end %>
-        </td>
-        <td><%= cart_item.subtotal %></td>
-        <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, "data-confirm" => "商品を削除しますか？", class: "btn btn-danger" %></td>
-      </tr>
-      <% @sum += cart_item.subtotal %>
-  </tbody
-<% end %>
-</table>
-<%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
-合計金額 <%= @sum %><br>
-<%= link_to "情報入力に進む" , new_order_path , class: "btn btn-success" %>
+            <% end %>
+          </td>
+          <td><%= cart_item.subtotal.to_s(:delimited) %></td>
+          <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, "data-confirm" => "商品を削除しますか？", class: "btn btn-danger" %></td>
+        </tr>
+        <% @sum += cart_item.subtotal %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 p-3">
+      <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-lg-4 p-3">
+      <table class="table table-bordered text-right">
+        <tr>
+          <td>合計金額</td>
+          <td><%= @sum.to_s(:delimited) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row p-2">
+    <div class="mx-auto">
+      <%= link_to "情報入力に進む" , new_order_path , class: "btn btn-success" %>
+    </div>
+  </div>
+</div>

@@ -1,19 +1,19 @@
 class Public::OrdersController < ApplicationController
-  
+
   def index
     @orders = current_customer.orders
   end
-  
+
   def show
     @order = Order.find(params[:id])
-    @orders = current_customer.orders
+    @order_details = @order.order_details
   end
-  
+
   def new
     @order = Order.new
     @addresses = Address.all
   end
-  
+
   def confirm
     @order = Order.new(order_params)
     if params[:order][:select_address] == "0" #自身の住所
@@ -40,7 +40,7 @@ class Public::OrdersController < ApplicationController
     order = Order.new(order_params)
     order.save
     @cart_items = current_customer.cart_items.all
-    
+
     @cart_items.each do |cart_item|
       #order_detailsテーブルのカラムに値を保存する
       @order_details = OrderDetail.new
@@ -51,11 +51,11 @@ class Public::OrdersController < ApplicationController
       @order_details.making_status = 0
       @order_details.save
     end
-    
+
     CartItem.destroy_all #カート内の商品をすべて削除
     redirect_to orders_complete_path
   end
-  
+
   ##注文testを削除するためのコントローラ、後で消す機能
   def destroy
     @order = Order.find(params[:id])

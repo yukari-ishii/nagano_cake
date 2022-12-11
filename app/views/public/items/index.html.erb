@@ -23,15 +23,20 @@
         </tbody>
       </table>
     </div>
+    <!--商品一覧-->
     <div class="col-lg-9 p-5">
-      <h4>商品一覧</h4>
+      <h4 class="font-weight-bold p-2">商品一覧</h4><span>全<%= @items.count %>件</span>
+      <div class="row p-2">
         <% @items.each do |item| %>
-　        <p>商品名</p>
-　        <%= link_to item_path(item.id) do %>
-          <%= item.name %>
+        <div class="col-lg-3 font-weight-bold">
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.get_image, size: '150x100' %><br>
+            <%= item.name %><br>
           <% end %>
-          <p>￥<%= item.price %></p>
-      　<% end %>
+          ￥<%= item.with_tax_price.to_s(:delimited) %>
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

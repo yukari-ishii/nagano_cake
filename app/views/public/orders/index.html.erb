@@ -1,25 +1,38 @@
-<h4>注文履歴一覧</h4>
-
-<table class="table table-bordered">
-  <tr class ="table-active">
-    <th>注文日</th>
-    <th>配送先</th>
-    <th>注文商品</th>
-    <th>支払い金額</th>
-    <th>ステータス</th>
-    <th>注文詳細</th>
-  </tr>
-  <% @orders.each do |order| %>
-  <tr>
-    <td><%= order.created_at %></td>
-    <td><%= order.address %></td>
-    <td><%= order.name %></td>
-    <td><%= order.total_payment %></td>
-    <td><%= order.status %></td>
-    <td><%= link_to "表示する", order_path(order.id), class: "btn btn-primary" %>
-        <%= link_to "削除する", order_path(order.id), method: :delete, class: "btn btn-danger" %>
-    </td>
-  </tr>
-  <% end %>
-  
-</table>
+<div class="container">
+  <!--見出し-->
+  <div class="row">
+    <div class="col-lg-4 bg-light m-5">
+      <h5>注文履歴一覧</h5>
+    </div>
+    <div class="col-lg-8"></div>
+  </div>
+  <!--一覧-->
+  <table class="table table-bordered mx-1">
+    <tr class ="table-active">
+      <td>注文日</td>
+      <td>配送先</td>
+      <td>注文商品</td>
+      <td>支払い金額</td>
+      <td>ステータス</td>
+      <td>注文詳細</td>
+    </tr>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+      <td><%= order.postal_code %><br>
+          <%= order.address %><br>
+          <%= order.name %></td>
+      <td><% @order_details = order.order_details %>
+          <% @order_details.each do |order_detail| %>
+          <%= order_detail.item.name %>
+          <% end %>
+      </td>
+      <td><%= order.total_payment.to_s(:delimited) %>円</td>
+      <td><%= order.status_i18n %></td>
+      <td><%= link_to "表示する", order_path(order.id), class: "btn btn-primary" %>
+          <%= link_to "削除する", order_path(order.id), method: :delete, class: "btn btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  </div>

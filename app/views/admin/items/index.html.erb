@@ -1,18 +1,18 @@
 <div class="container">
   <!--見出し-->
   <div class="row">
-    <div class="col-lg-3 bg-light m-5">
+    <div class="col-lg-3 bg-light my-3">
       <h5>商品一覧</h5>
     </div>
-    <div class="col-lg-9 text-right">
+    <div class="col-lg-9 text-right my-3">
       <%= link_to new_admin_item_path do %>
-        <i class="fa-solid fa-circle-plus"></i>
+        <i class="fa-solid fa-circle-plus fa-3x" style="color: gray;"></i>
       <% end %>
     </div>
   </div>
   <!--一覧-->
-  <table class="table">
-    <thead>
+  <table class="table ">
+    <thead class="table-active">
       <th>商品ID</th>
       <th>商品名</th>
       <th>税抜価格</th>
@@ -43,3 +43,4 @@
     </tbody>
   </table>
 </div>
+<%= paginate @items %>

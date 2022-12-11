@@ -1,7 +1,22 @@
-<h4>マイページ</h4>
-
-<h3>登録情報</h3>
-  <table class ="table table-bordered"> <%= link_to "編集する", customers_information_edit_path, class: "btn btn-success" %>
+<div class="container">
+  <!--見出し-->
+  <div class="row">
+    <div class="col-lg-4 bg-light m-5">
+      <h5>マイページ</h5>
+    </div>
+  <div class="col-lg-8"></div>
+  </div>
+  <!--登録情報-->
+  <div class="row">
+    <div class="col-lg-2">
+      <h5 class="font-weight-bold">登録情報</h5>
+    </div>
+    <div class="col-lg-2">
+      <%= link_to "編集する", customers_information_edit_path, class: "btn btn-success" %>
+    </div>
+    <div class="col-lg-8"></div>
+  </div>
+  <table class ="table table-bordered m-3">
     <tr>
       <td>氏名</td>
       <td><%= current_customer.last_name %> <%= current_customer.first_name %></td>
@@ -27,7 +42,24 @@
       <td><%= current_customer.email %></td>
     </tr>
   </table>
-<h3>配送先</h3>
-  <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %>
-<h3>注文履歴</h3>
-  <%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %>
+  <!--配送先-->
+  <div class="row m-3">
+    <div class="col-lg-2">
+      <h5 class="font-weight-bold">配送先</h5>
+    </div>
+    <div class="col-lg-2">
+      <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-lg-8"></div>
+  </div>
+  <!--注文履歴-->
+  <div class="row m-3">
+    <div class="col-lg-2">
+      <h5 class="font-weight-bold">注文履歴</h5>
+    </div>
+    <div class="col-lg-2">
+      <%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-lg-8"></div>
+  </div>
+</div>
