@@ -1,7 +1,7 @@
 class Public::OrdersController < ApplicationController
 
   def index
-    @orders = current_customer.orders
+    @orders = current_customer.orders.order(created_at: :desc)
   end
 
   def show
@@ -54,13 +54,6 @@ class Public::OrdersController < ApplicationController
 
     CartItem.destroy_all #カート内の商品をすべて削除
     redirect_to orders_complete_path
-  end
-
-  ##注文testを削除するためのコントローラ、後で消す機能
-  def destroy
-    @order = Order.find(params[:id])
-    @order.destroy
-    redirect_to orders_path
   end
 
   private

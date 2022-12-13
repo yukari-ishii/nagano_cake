@@ -10,13 +10,14 @@
   <div class="row">
     <label class="col-lg-2">ジャンル名</label>
     <div class="col-lg-3">
-    <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
+    <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch, local: true do |f| %>
       <%= f.text_field :name %>
     </div>
     <div class="col-lg-3">
       <%= f.submit '変更を保存', class: 'btn btn-success' %>
-    </div>
+      <%= link_to "削除する", admin_genre_path(@genre.id), method: :delete, class: "btn btn-danger" %>
     <% end %>
+    </div>
     <div class="col-lg-4"></div>
   </div>
 </div>

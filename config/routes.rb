@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "homes#top"
     resources :items
-    resources :genres, only: [:index, :create, :edit, :update, :show]
+    resources :genres, only: [:index, :create, :edit, :update, :show, :destroy]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
     #ordersコントローラ
     get "orders/complete" => "orders#complete"
-    resources :orders, only: [:new, :create, :index, :show, :destroy] ##destroyはtest削除のためなので後で消す！！！
+    resources :orders, only: [:new, :create, :index, :show]
     post "orders/confirm" => "orders#confirm"
 
     #addressesコントローラ

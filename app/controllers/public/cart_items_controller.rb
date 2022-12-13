@@ -22,7 +22,7 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @cart_item = CartItem.new(cart_item_params) #フォームからカート内に商品が追加される
-    @cart_items = current_customer.cart_items.all #現在ログイン中の会員のカート内商品全て
+    @cart_items = current_customer.cart_items.all #現在ログイン中の会員のカート内商品全てを取得
       ##同一商品がカート内に存在する場合の処理
       @cart_items.each do |cart_item| #カート内商品から一つずつ取り出していく
         if cart_item.item_id == @cart_item.item_id #同じ商品（item_idが同じ）がカート内に存在する場合

@@ -33,16 +33,16 @@
     </div>
     <div class="col-lg-4">
       <table class="table table-bordered">
-        <tr class ="table-active">
-          <td>送料</td>
+        <tr>
+          <th>送料</th>
           <td>800</td>
         </tr>
         <tr>
-          <td>商品合計</td>
+          <th>商品合計</th>
           <td><%= @sum.to_s(:delimited) %></td>
         </tr>
         <tr>
-          <td>請求金額</td>
+          <th>請求金額</th>
           <td><%= (@sum + 800).to_s(:delimited) %></td>
         </tr>
       </table>

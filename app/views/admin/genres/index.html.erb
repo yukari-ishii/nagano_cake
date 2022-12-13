@@ -9,12 +9,12 @@
   <!--ジャンル追加欄-->
   <div class="row">
     <label class="col-lg-2">ジャンル名</label>
+    <%= form_with model: @genre, url: admin_genres_path, method: :post, local: true do |f| %>
     <div class="col-lg-3">
-    <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
       <%= f.text_field :name, placeholder: "ジャンル名" %>
     </div>
     <div class="col-lg-3">
-      <%= f.submit '新規登録', class: 'btn btn-success' %>
+      <%= f.submit '新規登録', class: 'btn btn-success m-2' %>
     </div>
     <% end %>
     <div class="col-lg-4"></div>
